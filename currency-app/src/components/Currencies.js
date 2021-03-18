@@ -1,9 +1,27 @@
-export default function Currencies(props) {
-    const { currency1, currency2 } = props
+import { connect } from 'react-redux'
+
+import CurrencyConversion from './CurrencyConversion'
+
+export const Currencies = (props) => {
+    const { loading, conversion } = props
+    if (loading) {
+        return <p>Loading...</p>
+    }
+
+    if (conversion === null) {
+        return null
+    }
+
     return (
-        <div>
-            <p>{currency1.amount} {currency1.curCode}</p>
-            <p>{currency2.amount} {currency2.curCode}</p>
-        </div>
+        <CurrencyConversion conversion={conversion}/>
     )
 }
+
+const mapStateToProps = (state) => {
+    return {
+        conversion: state.conversion,
+        loading: state.loading
+    }
+}
+
+export default connect(mapStateToProps)(Currencies)
