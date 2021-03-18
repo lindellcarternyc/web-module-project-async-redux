@@ -1,4 +1,5 @@
 import CurrencyForm from './components/CurrencyForm'
+import Currencies from './components/Currencies'
 
 export default function App() {
   const onSubmit = (currencies) => {
@@ -6,6 +7,17 @@ export default function App() {
   }
 
   return (
-    <CurrencyForm onSubmit={onSubmit} />
+    <div>
+      <CurrencyForm onSubmit={onSubmit} />
+      <Currencies currency1={{
+        amount: 1,
+        curCode: 'USD'
+      }}
+        currency2={{
+          amount: 4,
+          curCode:'DEF'
+        }}
+      />
+    </div>
   )
 }
