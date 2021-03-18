@@ -3,6 +3,8 @@ import { connect } from 'react-redux'
 
 import { fetchConversion } from '../store/thunks'
 
+import { InputDivStyles, InputLabelStyles, InputStyles } from './styles'
+
 import { CURRIENCIES  } from '../constants/curreny-codes'
 
 const CURRENCY_1_OPTIONS = Object.keys(CURRIENCIES).sort()
@@ -50,18 +52,38 @@ export const CurrencyForm = (props) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label htmlFor="currency1">Currency 1: </label>
-            <select onChange={handleChange} id="currency1" name="currency1" value={formValues.currency1}>
-                <option value="">---</option>
-                {getCurrency1Options()}
-            </select>
-            <label htmlFor="currency2">Currency 2:</label>
-            <select onChange={handleChange} id="currency2" name="currency2" value={formValues.currency2}>
-                <option value="">---</option>
-                {getCurrency2Options()}
-            </select>
-            <button type="submit" disabled={!isValid()}>Get Rate</button>
+        <form onSubmit={handleSubmit}
+            style={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                marginBottom: '1rem',
+                borderBottom: `1px solid #F3F7F0`,
+                paddingBottom: '1rem'
+            }}
+        >
+            <div style={InputDivStyles}>
+                <label style={InputLabelStyles} htmlFor="currency1">Currency 1:</label>
+                <select style={InputStyles} onChange={handleChange} id="currency1" name="currency1" value={formValues.currency1}>
+                    <option value="">---</option>
+                    {getCurrency1Options()}
+                </select>
+            </div>
+            <div style={InputDivStyles}>
+                <label style={InputLabelStyles} htmlFor="currency2">Currency 2:</label>
+                <select style={InputStyles} onChange={handleChange} id="currency2" name="currency2" value={formValues.currency2}>
+                    <option value="">---</option>
+                    {getCurrency2Options()}
+                </select>
+            </div>
+            <button style={{
+                color: '#F3F7F0',
+                backgroundColor: 'transparent',
+                outline: 'none',
+                border: '1px solid #F3F7F0',
+                padding: `0.5rem 0.75rem`,
+                textTransform: 'uppercase'
+            }}type="submit" disabled={!isValid()}>Get Rate</button>
         </form>
     )
 }

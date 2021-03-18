@@ -1,5 +1,7 @@
 import { useState } from 'react'
 
+import { InputDivStyles, InputLabelStyles, InputStyles } from './styles'
+
 const CurrencyConversion = (props) => {
     const [conversion, setConversion] = useState(() => {
         return {
@@ -43,18 +45,27 @@ const CurrencyConversion = (props) => {
     }
 
     return (
-        <div>
-            <label htmlFor="currency1">{conversion.currency1.code}</label>
-            <input type="number" value={conversion.currency1.amount} onChange={handleChange} name="currency1" />
-            =
-            <label htmlFor="currency2">{conversion.currency2.code}</label>
-            <input 
-                type="number"
-                value={conversion.currency2.amount}
-                onChange={handleChange}
-                name="currency2"
-                id="currency2"
-            />
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center'
+        }}>
+            <div style={{...InputDivStyles, marginBottom: '0.5rem'}}>
+                <label style={InputLabelStyles} htmlFor="currency1">{conversion.currency1.code}</label>
+                <input style={InputStyles} type="number" value={conversion.currency1.amount} onChange={handleChange} name="currency1" />
+            </div>
+            <div> = </div>
+            <div style={{...InputDivStyles, marginTop: '0.5rem'}}>
+                <label style={InputLabelStyles} htmlFor="currency2">{conversion.currency2.code}</label>
+                <input 
+                    style={InputStyles}
+                    type="number"
+                    value={conversion.currency2.amount}
+                    onChange={handleChange}
+                    name="currency2"
+                    id="currency2"
+                />
+            </div>
         </div>
     )
 }

@@ -5,7 +5,9 @@ import CurrencyConversion from './CurrencyConversion'
 export const Currencies = (props) => {
     const { loading, conversion } = props
     if (loading) {
-        return <p>Loading...</p>
+        return <p style={{
+            textAlign: 'center'
+        }}>Loading...</p>
     }
 
     if (conversion === null) {
