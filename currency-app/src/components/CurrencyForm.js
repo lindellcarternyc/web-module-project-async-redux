@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import { connect } from 'react-redux'
+
+import { fetchConversion } from '../store/thunks'
+
 import { CURRIENCIES  } from '../constants/curreny-codes'
 
 const CURRENCY_1_OPTIONS = Object.keys(CURRIENCIES).sort()
@@ -8,7 +12,7 @@ const INITIAL_FORM_VALUES = {
     currency2: ''
 }
 
-export default function CurrencyForm(props) {
+export const CurrencyForm = (props) => {
     const { onSubmit } = props
     const [formValues, setFormValues] = useState(INITIAL_FORM_VALUES)
 
@@ -61,3 +65,7 @@ export default function CurrencyForm(props) {
         </form>
     )
 }
+
+export default connect(null, { 
+    onSubmit: (currencies) => fetchConversion(currencies)
+})(CurrencyForm)
